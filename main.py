@@ -41,7 +41,33 @@ class OpenWpm:
              'http://www.theweathernetwork.com/ca/weather/quebec/montreal',
              'http://www.aircanada.com/ca/en/aco/home.html',
              'http://gmail.com',
-             'http://youtube.com']
+             'http://youtube.com',
+             'http://en.wikipedia.org/wiki/Wikipedia',
+             'http://twitter.com/',
+             'http://www.twitch.tv/',
+             'https://www.xnxx.com',
+             'http://www.instagram.com/',
+             'http://www.linkedin.com/',
+             'http://www.netflix.com',
+             'http://www.microsoft.com/en-ca/',
+             'http://thepiratebay.org/browse',
+             'http://news.ycombinator.com/',
+             'http://thehackernews.com/',
+             'http://www.securityforum.org/events/webinars/network-security-and-hacking-2/',
+             'http://www.deepdotweb.com/marketplace-directory/listing/gobotal-black-market/',
+             'http://myspace.com/',
+             'http://crohasit.com/dragon-ball-xenoverse-free-download/?',
+             'http://www.batmanstream.net/other-live-streaming-video-8.html',
+             'http://www.purevpn.com/blog/ufc-live-streaming/',
+             'http://www.blizzard.com/en-us/',
+             'http://games.torrentsnack.com/assassins-creed-pc/',
+             'http://crotorrents.com/assassins-creed-2-torrent-download/',
+             'http://pornhub.com',
+             'http://www.montrealracing.com/wp/',
+             'http://aliexpress.com',
+             'http://www.stealmylogin.com/',
+             'http://www.facebok.com/'
+             ]
 
     def __init__(self):
         self.manager = None
