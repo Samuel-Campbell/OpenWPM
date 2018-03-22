@@ -101,15 +101,6 @@ class OpenWpm:
             command_sequence.dump_profile_cookies(120)
             self.manager.execute_command_sequence(command_sequence, index='**')
 
-        # stateless crawl
-        for site in self.sites:
-            command_sequence = CommandSequence.CommandSequence(site, reset=True)
-            command_sequence.get(sleep=10, timeout=15)
-            command_sequence.dump_profile_cookies(120)
-            self.manager.execute_command_sequence(command_sequence, index='**')
-        self.manager.close()
-
-
 if __name__ == "__main__":
     openwpm = OpenWpm()
     openwpm.browse()
