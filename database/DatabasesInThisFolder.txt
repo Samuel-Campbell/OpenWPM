@@ -1,0 +1,1 @@
+Your databases should go in this folder. This unversioned add-on is necessary due to github supporting a maximum of 100mb files.
