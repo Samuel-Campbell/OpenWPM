@@ -2,10 +2,11 @@ from __future__ import absolute_import
 
 import os
 from os.path import join, isfile
+
 import pytest
 
+from src.open_wpm.automation import TaskManager
 from . import utilities
-from ..automation import TaskManager
 
 
 class OpenWPMTest(object):

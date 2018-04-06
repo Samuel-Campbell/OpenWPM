@@ -1,7 +1,10 @@
 from __future__ import absolute_import
-from automation import TaskManager, CommandSequence
-from six.moves import range
+
 import itertools
+
+from six.moves import range
+
+from src.open_wpm.automation import TaskManager, CommandSequence
 
 
 class OpenWpm:

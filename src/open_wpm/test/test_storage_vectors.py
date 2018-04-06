@@ -1,8 +1,9 @@
 from __future__ import absolute_import
+
+from src.open_wpm.automation import CommandSequence
+from src.open_wpm.automation import TaskManager
+from src.open_wpm.automation import db_utils
 from . import utilities
-from ..automation import CommandSequence
-from ..automation import TaskManager
-from ..automation.utilities import db_utils
 from .openwpmtest import OpenWPMTest
 
 expected_lso_content_a = [
@@ -22,7 +23,7 @@ expected_lso_content_b = [
                u'REPLACEME']
 
 expected_js_cookie = (
-             1,  # visit id
+    1,  # visit id
              u'%s' % utilities.BASE_TEST_URL_DOMAIN,
              u'test_cookie',
              u'Test-0123456789',

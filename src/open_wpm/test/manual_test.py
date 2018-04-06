@@ -3,23 +3,18 @@ from __future__ import print_function
 
 import atexit
 import os
-from os.path import dirname, join, realpath
 import subprocess
+from os.path import dirname, join, realpath
 
-from .utilities import BASE_TEST_URL, start_server
-from .conftest import create_xpi
-
-from automation.DeployBrowsers import configure_firefox
-
-from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from selenium import webdriver
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+
+from src.open_wpm.automation.DeployBrowsers import configure_firefox
+from .conftest import create_xpi
+from .utilities import BASE_TEST_URL, start_server
 
 # import commonly used modules and utilities so they can be easily accessed
 # in the interactive session
-from automation.Commands.utils import webdriver_extensions as wd_ext  # noqa
-from automation.utilities import domain_utils as du  # noqa
-from selenium.webdriver.common.keys import Keys  # noqa
-from selenium.common.exceptions import *  # noqa
 
 OPENWPM_LOG_PREFIX = "console.log: openwpm: "
 INSERT_PREFIX = "Array"

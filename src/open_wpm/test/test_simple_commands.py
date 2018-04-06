@@ -1,16 +1,18 @@
 from __future__ import absolute_import
-from PIL import Image
-from six.moves.urllib.parse import urlparse
+
 import glob
 import gzip
 import json
 import os
 import re
 
+from PIL import Image
+from six.moves.urllib.parse import urlparse
+
+from src.open_wpm.automation import CommandSequence
+from src.open_wpm.automation import TaskManager
+from src.open_wpm.automation import db_utils
 from . import utilities
-from ..automation import CommandSequence
-from ..automation import TaskManager
-from ..automation.utilities import db_utils
 from .openwpmtest import OpenWPMTest
 
 url_a = utilities.BASE_TEST_URL + '/simple_a.html'

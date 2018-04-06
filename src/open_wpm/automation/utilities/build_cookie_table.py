@@ -3,12 +3,12 @@ from __future__ import print_function
 
 import json
 import os
-import six
-import time
-from six.moves.urllib.parse import urlparse
-
-from netlib.odict import ODictCaseless
 import sqlite3
+import time
+
+import six
+from netlib.odict import ODictCaseless
+from six.moves.urllib.parse import urlparse
 
 # This should be the modified Cookie.py included
 # the standard lib Cookie.py has many bugs

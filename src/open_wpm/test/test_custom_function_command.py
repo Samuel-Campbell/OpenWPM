@@ -1,8 +1,9 @@
 from __future__ import absolute_import
+
+from src.open_wpm.automation import CommandSequence
+from src.open_wpm.automation import TaskManager
+from src.open_wpm.automation import db_utils
 from . import utilities
-from ..automation import CommandSequence
-from ..automation import TaskManager
-from ..automation.utilities import db_utils
 from .openwpmtest import OpenWPMTest
 
 url_a = utilities.BASE_TEST_URL + '/simple_a.html'
@@ -26,7 +27,7 @@ class TestCustomFunctionCommand(OpenWPMTest):
     def test_custom_function(self):
         """ Test `custom_function` with an inline func that collects links """
 
-        from ..automation.SocketInterface import clientsocket
+        from src.open_wpm.automation import clientsocket
 
         def collect_links(table_name, scheme, **kwargs):
             """ Collect links with `scheme` and save in table `table_name` """

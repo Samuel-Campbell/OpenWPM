@@ -1,18 +1,20 @@
 from __future__ import absolute_import
-from six.moves.urllib.parse import urlparse
-from six.moves import range
+
+import json
+import os
 from hashlib import md5
 from time import sleep
-import json
-import six
-import os
 
+import six
+from six.moves import range
+from six.moves.urllib.parse import urlparse
+
+from src.open_wpm.automation.utilities.platform_utils import parse_http_stack_trace_str
 from . import utilities
 from .openwpmtest import OpenWPMTest
-from ..automation import TaskManager
-from ..automation.utilities.platform_utils import parse_http_stack_trace_str
-from ..automation.utilities import db_utils
 from ..automation import CommandSequence
+from ..automation import TaskManager
+from ..automation.utilities import db_utils
 
 # Data for test_page_visit
 # format: (

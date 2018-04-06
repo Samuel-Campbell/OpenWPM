@@ -1,12 +1,14 @@
 from __future__ import absolute_import
-from datetime import datetime
-import pytest
-import os
 
+import os
+from datetime import datetime
+
+import pytest
+
+from src.open_wpm.automation import TaskManager
+from src.open_wpm.automation import db_utils
 from . import utilities
 from .openwpmtest import OpenWPMTest
-from ..automation import TaskManager
-from ..automation.utilities import db_utils
 
 # Expected Navigator and Screen properties
 PROPERTIES = {

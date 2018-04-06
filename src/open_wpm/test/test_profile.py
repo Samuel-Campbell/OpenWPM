@@ -1,8 +1,11 @@
 from __future__ import absolute_import
-import pytest
+
 from os.path import join, isfile
-from ..automation import TaskManager
-from ..automation.Errors import CommandExecutionError, ProfileLoadError
+
+import pytest
+
+from src.open_wpm.automation import CommandExecutionError, ProfileLoadError
+from src.open_wpm.automation import TaskManager
 from .openwpmtest import OpenWPMTest
 
 

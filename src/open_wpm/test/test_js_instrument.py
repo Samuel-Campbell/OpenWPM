@@ -1,6 +1,7 @@
 from __future__ import absolute_import
+
+from src.open_wpm.automation import db_utils
 from .openwpmtest import OpenWPMTest
-from ..automation.utilities import db_utils
 
 GETS_AND_SETS = {
     ("window.test.prop1", "get", "prop1"),

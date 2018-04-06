@@ -1,14 +1,14 @@
 from __future__ import absolute_import
 
 import os
-import pytest
 import tarfile
+
+import pytest
 from six.moves.urllib.parse import urlparse
 
-from ..automation import TaskManager
-from ..automation.utilities import domain_utils, db_utils
+from src.open_wpm.automation import TaskManager
+from src.open_wpm.automation import domain_utils, db_utils
 from .openwpmtest import OpenWPMTest
-
 
 TEST_SITES = [
     'http://google.com',
@@ -117,20 +117,20 @@ class TestCrawl(OpenWPMTest):
             rows = db_utils.query_db(crawl_db,
                                       "SELECT visit_id FROM site_visits "
                                       "WHERE site_url = ?",
-                                      ('http://' + url,))
+                                     ('http://' + url,))
             visit_id = rows[0]
 
             rows = db_utils.query_db(crawl_db,
                                       "SELECT COUNT(*) FROM http_responses "
                                       "WHERE visit_id = ?",
-                                      (visit_id,))
+                                     (visit_id,))
             if rows[0] > 1:
                 continue
 
             rows = db_utils.query_db(crawl_db,
                                       "SELECT response_status, location FROM "
                                       "http_responses WHERE visit_id = ?",
-                                      (visit_id,))
+                                     (visit_id,))
             response_status, location = rows[0]
             if response_status == 204:
                 continue
