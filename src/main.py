@@ -4,6 +4,7 @@ from tdg.http_redirects_tdg import HttpRedirectsTdg
 from tdg.http_requests_tdg import HttpRequestsTdg
 from tdg.http_responses_tdg import HttpResponsesTdg
 from tdg.abstract_tdg import DatabaseEnum
+import numpy
 
 
 class ProtectionPolicyEnum:
@@ -186,15 +187,43 @@ ordered_home_list = []
 ordered_tims_list = []
 
 for key in collection_dict['home']:
-    tpl = (key, len(collection_dict['home'][key]))
+    tpl = [key, len(collection_dict['home'][key])]
     ordered_home_list.append(tpl)
 
 for key in collection_dict['tim_hortons']:
-    tpl = (key, len(collection_dict['tim_hortons'][key]))
+    tpl = [key, len(collection_dict['tim_hortons'][key])]
     ordered_tims_list.append(tpl)
 
 ordered_home_list.sort(key=lambda x: x[1], reverse=True)
 ordered_tims_list.sort(key=lambda x: x[1], reverse=True)
+avg_home = numpy.average([x[1] for x  in ordered_home_list])
+avg_tims = numpy.average([x[1] for x  in ordered_tims_list])
+
+final_home_list = [x for x in ordered_home_list if x[1] >= avg_home]
+final_tims_list = [x for x in ordered_home_list if x[1] >= avg_tims]
+
+other_home = 0
+for e in ordered_home_list:
+    if e[1] < avg_home:
+        other_home += e[1]
+
+other_tims = 0
+for e in ordered_tims_list:
+    if e[1] < avg_tims:
+        other_tims += e[1]
+
+final_home_list.append(['other', other_home])
+final_tims_list.append(['other', other_tims])
+
+print('Home requests')
+for e in final_home_list:
+    print(e[0] + ', ' + str(e[1]))
+print()
+
+print('Time Hortons requests')
+for e in final_tims_list:
+    print(e[0] + ', ' + str(e[1]))
+print()
 
 """
 
@@ -230,12 +259,41 @@ ordered_home_list = []
 ordered_tims_list = []
 
 for key in redirect_dict['home']:
-    tpl = (key, len(redirect_dict['home'][key]))
+    tpl = [key, len(redirect_dict['home'][key])]
     ordered_home_list.append(tpl)
 
 for key in redirect_dict['tim_hortons']:
-    tpl = (key, len(redirect_dict['tim_hortons'][key]))
+    tpl = [key, len(redirect_dict['tim_hortons'][key])]
     ordered_tims_list.append(tpl)
 
 ordered_home_list.sort(key=lambda x: x[1], reverse=True)
 ordered_tims_list.sort(key=lambda x: x[1], reverse=True)
+avg_home = numpy.average([x[1] for x in ordered_home_list])
+avg_tims = numpy.average([x[1] for x in ordered_tims_list])
+
+final_home_list = [x for x in ordered_home_list if x[1] >= avg_home]
+final_tims_list = [x for x in ordered_home_list if x[1] >= avg_tims]
+
+other_home = 0
+for e in ordered_home_list:
+    if e[1] < avg_home:
+        other_home += e[1]
+
+other_tims = 0
+for e in ordered_tims_list:
+    if e[1] < avg_tims:
+        other_tims += e[1]
+
+final_home_list.append(['other', other_home])
+final_tims_list.append(['other', other_tims])
+
+
+print('Home redirects')
+for e in final_home_list:
+    print(e[0] + ', ' + str(e[1]))
+print()
+
+print('Time Hortons redirects')
+for e in final_tims_list:
+    print(e[0] + ', ' + str(e[1]))
+print()

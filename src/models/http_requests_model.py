@@ -4,7 +4,6 @@ import re
 
 class HttpRequestsModel:
     regex = re.compile('.*(\.net|\.com|\.org|\.ca|\.eu|\.edu|\.io|\.fi|\.fr|\.tv|\.ru|\.co)')
-
     def __init__(self):
         self.id = None
         self.crawl_id = None
@@ -48,5 +47,5 @@ class HttpRequestsModel:
     def __str__(self):
         url1 = self.url.split('//')[1]
         url1 = url1.split('/')[0]
-        url1 = re.search(self.regex, url1).group(0)
+        url1 = url1.split('.')[1]
         return str(url1) + ": " + str(self.top_level_url)
