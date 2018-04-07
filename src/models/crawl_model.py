@@ -1,3 +1,6 @@
+import json
+
+
 class CrawlModel:
     def __init__(self):
         self.crawl_id = None
@@ -7,3 +10,9 @@ class CrawlModel:
         self.ua_string = None
         self.finished = None
         self.start_time = None
+
+    def __eq__(self, dictionary):
+        d = json.loads(self.browser_params)
+        if d == dictionary:
+            return True
+        return False
