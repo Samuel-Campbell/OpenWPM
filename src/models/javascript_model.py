@@ -1,3 +1,6 @@
+import hashlib
+
+
 class JavascriptModel:
     def __init__(self):
         self.id = None
@@ -14,3 +17,12 @@ class JavascriptModel:
         self.value = None
         self.arguments = None
         self.time_stamp = None
+
+    def __hash__(self):
+        a = hashlib.md5(self.script_url.encode())
+        b = a.hexdigest()
+        as_int = int(b, 16)
+        return as_int
+
+    def __eq__(self, other):
+        return self.script_url == other.script_url
