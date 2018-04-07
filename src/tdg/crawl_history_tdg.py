@@ -5,8 +5,8 @@ from models.crawl_model import CrawlModel
 
 
 class CrawlHistoryTdg(AbstractTdg):
-    def __init__(self):
-        AbstractTdg.__init__(self)
+    def __init__(self, database):
+        AbstractTdg.__init__(self, database)
 
     def select(self):
         model_list = []
