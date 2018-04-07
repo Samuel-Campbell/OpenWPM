@@ -92,6 +92,13 @@ def get_analytics(lst1, lst2):
     return b.difference(a), a.intersection(b)
 
 
+"""
+
+RAW DATA
+
+"""
+
+
 data_dict = {
     'unsecure':{
         'home': fetch_data(DatabaseEnum.HOME, ProtectionPolicyEnum.LOW),
@@ -113,7 +120,14 @@ for key in data_dict:
             print('{}: {}'.format(k2, len(data_dict[key][k1][k2])))
     print()
 
-http_redirects = get_analytics(data_dict['unsecure']['home']['http_redirects'], data_dict['unsecure']['tim_hortons']['http_redirects'])
+
+"""
+
+DIFFERENCE AND INTERSECTION
+
+"""
+
+
 http_requests = get_analytics(data_dict['unsecure']['home']['http_requests'], data_dict['unsecure']['tim_hortons']['http_requests'])
 http_responses = get_analytics(data_dict['unsecure']['home']['http_responses'], data_dict['unsecure']['tim_hortons']['http_responses'])
 javascript = get_analytics(data_dict['unsecure']['home']['javascript'], data_dict['unsecure']['tim_hortons']['javascript'])
@@ -122,13 +136,11 @@ analytic_dict = {
     'set_difference': {
         'http_responses': http_responses[0],
         'http_requests': http_requests[0],
-        'http_redirects': http_redirects[0],
         'javascript': javascript[0]
     },
     'set_intersection': {
         'http_responses': http_responses[1],
         'http_requests': http_requests[1],
-        'http_redirects': http_redirects[1],
         'javascript': javascript[1]
     }
 }
@@ -140,6 +152,13 @@ for key in analytic_dict:
     print()
 
 
+"""
+
+REQUESTS
+
+"""
+
+
 collection_dict = {
     'home':{
 
@@ -148,24 +167,75 @@ collection_dict = {
 
     }
 }
-diff_list = analytic_dict['set_difference']['http_requests']
-intersection_list = analytic_dict['set_intersection']['http_requests']
+tim_list = data_dict['unsecure']['tim_hortons']['http_requests']
+home_list = data_dict['unsecure']['home']['http_requests']
 
-for element in diff_list:
+for element in tim_list:
     e = str(element).split(': ')
     if e[0] not in collection_dict['tim_hortons']:
         collection_dict['tim_hortons'][e[0]] = []
     collection_dict['tim_hortons'][e[0]].append(e[1])
 
-for element in intersection_list:
+for element in home_list:
     e = str(element).split(': ')
     if e[0] not in collection_dict['home']:
         collection_dict['home'][e[0]] = []
     collection_dict['home'][e[0]].append(e[1])
 
-for key in collection_dict:
-    print('**Data collection from {}**'.format(key))
-    for k1 in collection_dict[key]:
-        print('{} has performed {} requests'.format(k1, len(collection_dict[key][k1])))
-    print()
+ordered_home_list = []
+ordered_tims_list = []
 
+for key in collection_dict['home']:
+    tpl = (key, len(collection_dict['home'][key]))
+    ordered_home_list.append(tpl)
+
+for key in collection_dict['tim_hortons']:
+    tpl = (key, len(collection_dict['tim_hortons'][key]))
+    ordered_tims_list.append(tpl)
+
+ordered_home_list.sort(key=lambda x: x[1], reverse=True)
+ordered_tims_list.sort(key=lambda x: x[1], reverse=True)
+
+"""
+
+REDIRECTION
+
+"""
+
+redirect_dict = {
+    'home':{
+
+    },
+    'tim_hortons':{
+
+    }
+}
+
+tim_list = data_dict['unsecure']['tim_hortons']['http_redirects']
+home_list = data_dict['unsecure']['home']['http_redirects']
+
+for element in tim_list:
+    e = str(element).split(': ')
+    if e[1] not in redirect_dict['tim_hortons']:
+        redirect_dict['tim_hortons'][e[1]] = []
+    redirect_dict['tim_hortons'][e[1]].append(e[0])
+
+for element in home_list:
+    e = str(element).split(': ')
+    if e[1] not in redirect_dict['home']:
+        redirect_dict['home'][e[1]] = []
+    redirect_dict['home'][e[1]].append(e[0])
+
+ordered_home_list = []
+ordered_tims_list = []
+
+for key in redirect_dict['home']:
+    tpl = (key, len(redirect_dict['home'][key]))
+    ordered_home_list.append(tpl)
+
+for key in redirect_dict['tim_hortons']:
+    tpl = (key, len(redirect_dict['tim_hortons'][key]))
+    ordered_tims_list.append(tpl)
+
+ordered_home_list.sort(key=lambda x: x[1], reverse=True)
+ordered_tims_list.sort(key=lambda x: x[1], reverse=True)
