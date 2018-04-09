@@ -29,7 +29,7 @@ class ProtectionPolicyEnum:
         "tracking-protection": False,
         "disable_flash": False,
         "profile_tar": None,
-        "tp_cookies": "always",
+        "tp_cookies": "never",
         "headless": False,
         "browser": "firefox"
     }
@@ -217,12 +217,12 @@ final_tims_list.append(['other', other_tims])
 
 print('Home requests')
 for e in final_home_list:
-    print(e[0] + ', ' + str(e[1]))
+    print(e[0] + '\t' + str(e[1]))
 print()
 
 print('Time Hortons requests')
 for e in final_tims_list:
-    print(e[0] + ', ' + str(e[1]))
+    print(e[0] + '\t' + str(e[1]))
 print()
 
 """
@@ -290,10 +290,34 @@ final_tims_list.append(['other', other_tims])
 
 print('Home redirects')
 for e in final_home_list:
-    print(e[0] + ', ' + str(e[1]))
+    print(e[0] + '\t' + str(e[1]))
 print()
 
-print('Time Hortons redirects')
+print('Tim Hortons redirects')
 for e in final_tims_list:
-    print(e[0] + ', ' + str(e[1]))
+    print(e[0] + '\t' + str(e[1]))
 print()
+
+
+"""
+
+THIRD PARTY CHANNELS
+
+
+"""
+
+
+tim_list = data_dict['unsecure']['tim_hortons']['http_requests']
+home_list = data_dict['unsecure']['home']['http_requests']
+
+third_party = 0
+for i in tim_list:
+    if i.is_third_party_channel == 1:
+        third_party += 1
+print("Third party requests on Tim Hortons hotspot: {}%".format(100 * third_party / len(tim_list)))
+
+third_party = 0
+for i in home_list:
+    if i.is_third_party_channel == 1:
+        third_party += 1
+print("Third party requests on Home hotspot: {}%".format(100 * third_party / len(home_list)))
